@@ -4,16 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-
 @Entity
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Booking extends BaseModel {
-
-
+//@Table(indexes = {
+//        @Index(columnList = "driver_id")
+//})
+public class Booking extends BaseModel{
 
     @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -24,11 +24,16 @@ public class Booking extends BaseModel {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date endTime;
 
-    private long totalDistance;
+    private Long totalDistance;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Driver driver;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger;
+
+    @OneToOne
+    private ExactLocation startLocation;
+
+
 }
