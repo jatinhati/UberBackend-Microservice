@@ -5,12 +5,19 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Getter
 @Setter
-public class PassengerReview extends BaseModel{
+public class PassengerReview extends Review{
 
-    private String PassengerReviewContent;
+    @Column(nullable = false)
+    private String passengerReviewContent;
 
-    private String PassengerRating;
+    @Column(nullable = false)
+    private String passengerRating;
 }
